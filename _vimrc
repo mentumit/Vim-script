@@ -1,6 +1,8 @@
 "--------------------------------------------------------------------------- 
 " For pathogen.vim: auto load all plugins in .vimfiles/bundle
 "--------------------------------------------------------------------------- 
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
 execute pathogen#infect()
 
 "--------------------------------------------------------------------------- 
@@ -20,17 +22,34 @@ filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
 "--------------------------------------------------------------------------- 
-" 
+" General setting
 "--------------------------------------------------------------------------- 
 
-set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
+"set nocompatible
+"source $VIMRUNTIME/vimrc_example.vim
+"source $VIMRUNTIME/mswin.vim
+"behave mswin
 
-"Ctags ,Taglist"
-let Tlist_Ctags_Cmd = 'C:\ctags.exe'
-nnoremap <F12> :TlistToggle<CR>
+colorscheme ir_black
+syntax on
+set number
+"Linux gVim 用如下\ 12
+"set guifont=Monaco\ 12
+"set guifont=Consolas\ 12
+"set guifont=mingliu\ 12
+"Windows gVim 用如下\ 12
+set guifont=mingliu:h12
+
+"--------------------------------------------------------------------------- 
+" General setting
+"--------------------------------------------------------------------------- 
+
+
+"--------------------------------------------------------------------------- 
+"Ctags ,Taglist 
+"---------------------------------------------------------------------------
+
+map <f9> :Tlist<CR>
 
 set diffexpr=MyDiff()
 function MyDiff()
