@@ -1,8 +1,8 @@
 "--------------------------------------------------------------------------- 
 " For pathogen.vim: auto load all plugins in .vimfiles/bundle
 "--------------------------------------------------------------------------- 
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"call pathogen#runtime_append_all_bundles()
+"call pathogen#helptags()
 execute pathogen#infect()
 
 "--------------------------------------------------------------------------- 
@@ -21,10 +21,6 @@ filetype on           " Enable filetype detection
 filetype indent on    " Enable filetype-specific indenting
 filetype plugin on    " Enable filetype-specific plugins
 
-"--------------------------------------------------------------------------- 
-" General setting
-"--------------------------------------------------------------------------- 
-
 "set nocompatible
 "source $VIMRUNTIME/vimrc_example.vim
 "source $VIMRUNTIME/mswin.vim
@@ -32,24 +28,56 @@ filetype plugin on    " Enable filetype-specific plugins
 
 colorscheme ir_black
 syntax on
-set number
-"Linux gVim 用如下\ 12
-"set guifont=Monaco\ 12
-"set guifont=Consolas\ 12
-"set guifont=mingliu\ 12
-"Windows gVim 用如下\ 12
-set guifont=mingliu:h12
 
 "--------------------------------------------------------------------------- 
-" General setting
+" 
 "--------------------------------------------------------------------------- 
 
 
+
 "--------------------------------------------------------------------------- 
-"Ctags ,Taglist 
+" 
+"--------------------------------------------------------------------------- 
+
+
+"--------------------------------------------------------------------------- 
+" Programming Setting
 "---------------------------------------------------------------------------
+filetype on           " Enable filetype detection
 
-map <f9> :Tlist<CR>
+" TagList 鍵入:Tlist開啟
+let Tlist_Show_One_File=1                             " 只顯示當前文件的tags
+let Tlist_Exit_OnlyWindow=1                           " 如果Taglist窗口是最後一個窗口則退出vim
+let Tlist_Use_Right_Window=0                          " 在右側窗口中顯示用1,左邊用0
+let Tlist_Enable_Fold_Column=1
+let Tlist_File_Fold_Auto_Close=1
+
+"設定F12為開啟/關閉Tag List的快捷鍵
+nnoremap <F12> :TlistToggle<CR>
+
+"生成一個tags文件
+"nmap <F9> <Esc>:!ctags -R *<CR>
+"設置一下環境變量。path=C:\cygwin\bin\ctags.exe
+
+"###########Ctags設置##################
+" --先在項目頂層目錄執行ctags -R，然後打開源文件，在命令模式中執行如：set tags=../../tags
+" --這樣在函數名上按 <C-]> 即可轉到函數定義，按 <C-T> 可以返回調用地址
+" --如果長時間需要在該目錄工作，也可以將tags路徑寫入配置文件
+
+"set tags+=C:\Develop\MinGW\include\tags              " For C/C++
+"set tags+=C:\Develop\GTK\include\tags                " For GTK+
+"set tags+=C:\Develop\Lua\lua\tags                    " For Lua
+"set tags+=G:\Cygwin\usr\include\tags                 " For Cygwin
+
+set tags=tags;
+set autochdir
+let Tlist_Ctags_Cmd = 'C:\cygwin\bin\ctags.exe'
+
+
+
+
+
+
 
 set diffexpr=MyDiff()
 function MyDiff()
